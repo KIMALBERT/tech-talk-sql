@@ -12,12 +12,471 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<style>
+			.font-size-x-large {font-size: x-large;}
+			.font-size-large {font-size: large;}
+			.grid-container {
+				display: grid;
+				grid-template-columns: auto auto auto;
+				padding: 10px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!--Capa-->
+				<section>
+					<strong>TECH-TALK</strong> 11/NOV/2020 <br />
+					<strong>&#60;TITLE GOES HERE&#62;</strong><br />
+					KIM ALBERT
+				</section>
+
+				<!--Sumário-->
+				<section>
+					<section>
+						<p>O que será apresentado?</p>
+						<div class="grid-container">
+							<div><!--Coluna 1-->
+								<ul class="font-size-x-large">
+									<li>Introdução ao SQL e tabelas</li>
+									<li>SELECT</li>
+									<li>WHERE
+										<ul>
+											<li>AND & BETWEEN</li>
+											<li>OR</li>
+											<li>IN</li>
+											<li>LIKE</li>
+											<li>NOT</li>
+										</ul>
+									</li>
+									<li>DISTINCT</li>
+									<li>ALIAS</li>
+									<li>LIMIT</li>
+									<li>ORDER BY</li>
+									
+								</ul>
+							</div>
+							<div><!--Coluna 2-->
+								<ul class="font-size-x-large">
+									<li>JOINs
+										<ul>
+											<li>INNER JOIN</li>
+											<li>LEFT & RIGHT JOIN</li>
+											<li>SELF JOIN</li>
+											<li>FULL JOIN</li>
+										</ul>
+									</li>
+									<li>Aggregation Function
+										<ul>
+											<li>COUNT</li>
+											<li>SUM</li>
+											<li>AVG</li>
+											<li>MAX & MIN</li>
+										</ul>
+									</li>
+									<li>GROUP BY</li>
+									<li>HAVING</li>
+								</ul>
+							</div>
+							<div><!--Coluna 3-->
+								<ul class="font-size-x-large">
+									<li>Exemplo SELF JOIN</li>
+									<li>Material de Apoio</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</section>
+
+				<!--SQL-->
+				<section>
+					<section>
+						<p>SQL - Structured Query Language</p>
+						<p class="font-size-x-large">SQL é utilizado para manipular e acessar dados em banco de dados relacionais</p>
+					</section>
+				</section>
+
+				<!--Table-->
+				<section>
+					<section>
+						<p>Table</p>
+						<p class="font-size-x-large">São dados tabulados separados por linhas e colunas</p>
+					</section>
+					<section>
+						<p>Row - Linha</p>
+						<p class="font-size-x-large">Records - Registros</p>
+						<img src="./images/table_row.jpg" style="max-width: 920px; width: auto; height: auto;">
+					</section>
+					<section>
+						<p>Column - Coluna</p>
+						<p class="font-size-x-large">Field/Attribute - Campo/Atributo</p>
+						<img src="./images/table_column.jpg" style="max-width: 920px; width: auto; height: auto;">
+					</section>
+				</section>
+				
+				<!--SELECT-->
+				<section>
+					<section>
+						<p>
+							SELECT
+						</p>
+						<p class="font-size-x-large">
+							SELECT retorna os registros de uma ou mais tabelas
+						</p>
+					</section>
+					<section>
+						<p class="font-size-x-large">
+							Retorna todas as colunas da tabela <strong>table</strong>
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table;
+							  </code></pre>
+						<p class="font-size-x-large">
+							Retorna as colunas <strong>column_a</strong> e <strong>column_b</strong> da tabela <strong>table</strong>
+						</p>
+						
+						<pre><code data-trim data-noescape>
+							SELECT column_a, column_b
+							FROM table;
+							</code></pre>
+					</section>
+				</section>
+
+				<!--WHERE-->
+				<section>
+					<section>
+						<p>
+							WHERE
+						</p>
+						<p class="font-size-x-large">
+							Filtrar o que será retornado de uma consulta
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table
+							WHERE attribute = value;
+							  </code></pre>
+					</section>
+					<section>
+						<p>
+							AND & BETWEEN
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table
+							WHERE attribute = value AND attribute2 = value2;
+							  </code></pre>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table
+							WHERE attribute BETWEEN value AND value2;
+							</code></pre>
+						<p>
+							OR
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table
+							WHERE attribute = value OR attribute2 = value2;
+								</code></pre>
+					</section>
+					<section>
+						<p>
+							IN
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table
+							WHERE attribute IN (value1,value2);
+							  </code></pre>
+						<p>
+							LIKE
+						</p>
+						<p class="font-size-x-large">
+							LIKE é case sensitivity, ou seja, 'a%' é diferente de 'A%'
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table
+							WHERE attribute LIKE '%A%';
+								</code></pre>
+						<p>
+							NOT
+						</p>
+						<div class="grid-container">
+							<div>
+								<pre><code data-trim data-noescape>
+									SELECT *
+									FROM table
+									WHERE attribute NOT IN (value1,value2);
+										</code></pre>
+							</div>
+							<di>
+								<pre><code data-trim data-noescape>
+									SELECT *
+									FROM table
+									WHERE attribute NOT LIKE '%A%';
+										</code></pre>
+							</di>
+						</div>
+					</section>
+				</section>
+								
+				<!--Others-->
+				<section>
+					<section>
+						<p>
+							ALIAS
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT t.column AS col_1
+							FROM table t
+							WHERE t.attribute = value;
+								</code></pre>
+						<p>
+							DISTINCT
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT DISTINCT column
+							FROM table 
+							WHERE attribute = value;
+								</code></pre>
+					</section>
+					<section>
+						<p>
+							LIMIT
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT column
+							FROM table
+							WHERE attribute = value
+							LIMIT 10;
+								</code></pre>
+						<p>
+							ORDER BY 
+						</p>
+						<p class="font-size-x-large">
+							ASC & DESC
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT column
+							FROM table
+							WHERE attribute = value
+							ORDER BY column ASC
+							LIMIT 10;
+								</code></pre>
+					</section>
+				</section>
+
+				<!--JOINs-->
+				<section>
+					<section>
+						<p>
+							JOINs
+						</p>
+						<p class="font-size-x-large">
+							Resumo: combinar registros baseado na relação entre as colunas (PK - FK) de duas ou mais tabelas. *ERD - Entity Relationship Diagram
+						</p>
+						<img src="./images/erd.jpg" style="max-width: 712px; width: auto; height: auto;">
+					</section>
+					<section>
+						<img src="./images/join_venn.jpg" style="max-width: 440px; width: auto; height: auto;">
+					</section>
+					<section>
+						<p>
+							INNER JOIN
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table t
+							INNER JOIN table2 t2
+							ON t.attribute = t2.attribute;
+							  </code></pre>
+						<p>
+							LEFT JOIN
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM table t
+							LEFT JOIN table2 t2
+							ON t.attribute = t2.attribute;
+							  </code></pre>
+					</section>
+				</section>
+
+				<!--Aggregation Function-->
+				<section>
+					<section>
+						<p>
+							COUNT
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT COUNT(*)
+							FROM table;
+								</code></pre>
+						<pre><code data-trim data-noescape>
+							SELECT COUNT(column)
+							FROM table;
+								</code></pre>
+						<p>
+							SUM
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT SUM(column)
+							FROM table;
+								</code></pre>
+					</section>
+					<section>
+						<p>
+							AVG
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT AVG(column)
+							FROM table;
+								</code></pre>
+						<p>
+							MAX & MIN
+						</p>
+						<pre><code data-trim data-noescape>
+							SELECT MAX(column), MIN(column)
+							FROM table;
+								</code></pre>
+					</section>
+				</section>
+
+				<!--GROUP BY-->
+				<section>
+					<p>
+						GROUP BY & HAVING
+					</p>
+					<pre><code data-trim data-noescape>
+						SELECT column_a, COUNT(column_b)
+						FROM table
+						GROUP BY column_a;
+							</code></pre>
+					<pre><code data-trim data-noescape>
+						SELECT column_a, COUNT(column_b)
+						FROM table
+						GROUP BY column_a
+						HAVING COUNT(column_b) = value;
+							</code></pre>
+				</section>
+
+				<!--Análise SELF JOIN-->
+				<section>
+					<section>
+						<p>Análise SELF JOIN</p>
+						<p class="font-size-x-large">
+							Encontrando o enésimo maior valor com self join e subquery
+						</p>
+						<p class="font-size-x-large">
+							Tabela: Employee
+						</p>
+						<table>
+							<tr>
+								<th>employee_id</th>
+								<th>salary</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>200</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>800</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>450</td>
+							</tr>
+						</table>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM Employee Emp1
+							WHERE (n-1) = (SELECT COUNT(DISTINCT(Emp2.salary))
+									FROM Employee Emp2
+									WHERE salary.Salary > Emp1.salary)
+								</code></pre>
+					</section>
+					<section>
+						<p>Explicação comum</p>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM Employee Emp1
+							WHERE (n-1) = (SELECT COUNT(DISTINCT(Emp2.salary))
+									FROM Employee Emp2
+									WHERE salary.Salary > Emp1.salary)
+								</code></pre>
+						<p class="font-size-x-large">
+							Substituir o 'n' (enésimo) do '(n-1)' e isso irá retornar o enésimo valor <br /> 
+							Exemplo: se estiver interessado em retornar o segundo maior valor -> n=2 -> '(2-1)' = 1
+						</p>
+					</section>
+					<section>
+						<p>Análise</p>
+						<div class="grid-container">
+							<div>
+								<table>
+									<tr>
+										<th>employee_id</th>
+										<th>salary</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>200</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>800</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>450</td>
+									</tr>
+								</table>
+							</div>
+							<div>
+								<table>
+									<tr>
+										<th>employee_id</th>
+										<th>salary</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>200</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>800</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>450</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<pre><code data-trim data-noescape>
+							SELECT *
+							FROM Employee Emp1
+							WHERE (n-1) = (SELECT COUNT(DISTINCT(Emp2.salary))
+									FROM Employee Emp2
+									WHERE salary.Salary > Emp1.salary)
+								</code></pre>
+					</section>
+				</section>
+
+				<!--Extra-->
+				<section>
+					<strong>MATERIAL DE APOIO</strong> <br/>
+					<p class="font-size-x-large">
+						<strong>SQL for Data Analysis:</strong> https://www.udacity.com/course/sql-for-data-analysis--ud198 <br />
+						<strong>W3SCHOOLS:</strong> https://www.w3schools.com/sql/default.asp <br />
+						<strong>reveal.js:</strong> https://revealjs.com/
+					</p>
+				</section>
 			</div>
 		</div>
 
@@ -31,6 +490,8 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				backgroundTransition: 'slide',
+				slideNumber: 'c/t',
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
