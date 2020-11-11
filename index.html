@@ -408,7 +408,7 @@
 							FROM Employee Emp1
 							WHERE (n-1) = (SELECT COUNT(DISTINCT(Emp2.salary))
 									FROM Employee Emp2
-									WHERE salary.Salary > Emp1.salary)
+									WHERE Emp2.Salary > Emp1.salary)
 								</code></pre>
 					</section>
 					<section>
@@ -418,7 +418,7 @@
 							FROM Employee Emp1
 							WHERE (n-1) = (SELECT COUNT(DISTINCT(Emp2.salary))
 									FROM Employee Emp2
-									WHERE salary.Salary > Emp1.salary)
+									WHERE Emp2.Salary > Emp1.salary)
 								</code></pre>
 						<p class="font-size-x-large">
 							Substituir o 'n' (enésimo) do '(n-1)' e isso irá retornar o enésimo valor <br /> 
