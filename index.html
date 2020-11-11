@@ -474,7 +474,7 @@
 							FROM Employee Emp1
 							WHERE (n-1) = (SELECT COUNT(DISTINCT(Emp2.salary))
 									FROM Employee Emp2
-									WHERE salary.Salary > Emp1.salary)
+									WHERE Emp2.Salary > Emp1.salary)
 								</code></pre>
 					</section>
 				</section>
